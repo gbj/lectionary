@@ -1,25 +1,67 @@
 .App {
-  text-align: center;
+  padding: 1rem;
+}
+
+input, select, button {
+  width: auto;
+}
+
+@media (min-width: 767px) {
+  .App {
+    padding: 2rem;
+  }
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
+.controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.readings-heading {
+  text-align: center;
+}
+
+.controls label {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
+  .floating {
     animation: App-logo-float infinite 3s ease-in-out;
   }
 }
 
 .App-header {
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  font-size: calc(10px + 1vmin);
+  padding: 0;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+@media(min-width: 767px) {
+  .App-header {
+    padding: 1rem;
+    font-size: calc(10px + 2vmin);
+  }
+}
+
+.App-header img {
+  padding: 1rem;
 }
 
 .App-link {
@@ -36,4 +78,43 @@
   100% {
     transform: translateY(0px)
   }
+}
+
+.day {
+  text-align: center;
+}
+
+.reading {
+  text-align: justify;
+}
+
+.reading header {
+  display: grid;
+  grid-template: "type button"
+                 "citation citation";
+  grid-template-columns: 1fr auto;
+}
+
+.reading header button {
+  grid-area: button;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.reading header .type {
+  grid-area: type;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.reading header .citation {
+  grid-area: citation;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.loading, .error {
+  display: block;
+  margin: auto;
+  text-align: center;
 }
