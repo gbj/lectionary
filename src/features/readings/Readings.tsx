@@ -8,6 +8,7 @@ import { selectBibleVersion } from '../bible-version-picker/bibleVersionSlice';
 import logo from '../../assets/logo.svg';
 import error from '../../assets/error.svg';
 import { Reading } from './Reading';
+import { selectDay } from '../day/daySlice';
 
 export type ReadingsProps = {
   lectionary: string;
@@ -22,18 +23,23 @@ export const Readings = ({ lectionary } : ReadingsProps) => {
     previousLectionary = useSelector((state : AppState) => state.readings.lectionary),
     bibleVersion = useSelector(selectBibleVersion);
 
+  const day = useSelector(selectDay),
+    propers = day?.propers,
+    year = day?.years?.rclsunday;
+
+  console.log('Readings - day = ', day);
+
   useEffect(() => {
-    // make it reload when Date or Lectionary change
-    if(status === 'idle' || (status === 'succeeded' && (lectionary !== previousLectionary || date !== previousDate))) {
-      dispatch(fetchReadings({ lectionary, date }))
+    // make it reload when Date or Lectionary change, if Day is not undefined
+    if(day && (status === 'idle' || (status === 'succeeded' && (lectionary !== previousLectionary || date !== previousDate)))) {
+      dispatch(fetchReadings({ lectionary, date, day: day?.slug, year, propers }))
     }
-  }, [status, dispatch, date, lectionary, previousDate, previousLectionary]);
+  }, [status, dispatch, day, date, lectionary, previousDate, previousLectionary, propers, year]);
 
   const changeReading = (index : number, type : string, oldCitation : string) => {
     const citation = prompt('Please enter a new Biblical citation.', oldCitation);
     if(citation) {
       dispatch(setReadingCitation({ index, citation, type }));
-
     }
   }
 

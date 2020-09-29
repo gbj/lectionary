@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLectionary, selectLectionary } from './lectionarySlice';
 
 const LECTIONARIES = [
-  { value: 'rclsunday', label: 'Revised Common Lectionary' },
+  { value: 'rclsundayTrack1', label: 'RCL Track 1' },
+  { value: 'rclsunday', label: 'RCL Track 2' },
   { value: 'morning_prayer', label: 'Morning Prayer (1979 BCP)' },
   { value: 'evening_prayer', label: 'Evening Prayer (1979 BCP)' }
 ];
-const LECTIONARY_CODES = ['rclsunday', 'bcp1979_daily_office'] as const;
+const LECTIONARY_CODES = ['rclsundayTrack1', 'rclsunday', 'bcp1979_daily_office'] as const;
 type Lectionary = typeof LECTIONARY_CODES[number];
 
 export const LectionaryPicker = () => {

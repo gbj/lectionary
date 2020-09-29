@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const lectionarySlice = createSlice({
   name: 'lectionary',
-  initialState: 'rclsunday',
+  initialState: 'rclsundayTrack1',
   reducers: {
     setLectionary: (state, action) => state = action.payload
   }

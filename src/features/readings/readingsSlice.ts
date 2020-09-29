@@ -3,9 +3,17 @@ import { getReadings } from './get-readings';
 import { ReadingsState } from '../../app/store';
 import { getReading } from './get-reading';
 
+type FetchReadingArgs = {
+  lectionary: string;
+  date: string;
+  day: string | undefined;
+  year: string | undefined;
+  propers: string | undefined;
+};
 export const fetchReadings = createAsyncThunk(
   'readings/fetchReadings',
-  async ({ lectionary, date } : { lectionary: string; date: string; }) => getReadings(date, lectionary)
+  async ({ lectionary, date, day, year, propers } : FetchReadingArgs) =>
+    getReadings(date, lectionary, day, year, propers)
 );
 
 export const fetchReading = createAsyncThunk(
@@ -34,10 +42,10 @@ export const readingsSlice = createSlice({
   extraReducers: builder => {
     /* Fetch the list of readings */
     builder.addCase(fetchReadings.pending, (state) => {
-      state.status = 'loading'
+      state.status = 'loading';
     });
     builder.addCase(fetchReadings.fulfilled, (state, action) => {
-      state.status = 'succeeded'
+      state.status = 'succeeded';
       state.readings = action.payload.readings;
       state.date = action.payload.date;
       state.lectionary = action.payload.lectionary;

@@ -57,16 +57,7 @@ export const DayName = ({ date } : DayNameProps) => {
         </h2>
       }
       { holyDay && holyDayNameStr && <h2 className='day'>{holyDayNameStr}</h2>}
-      {/*<h2 *ngIf="obj.day.date && !(holyDayObserved(obj.day) && holyDayName(obj.day))">
-        <span *ngIf="!isSunday" i18n>
-          <span>{{ liturgyDate | date:'EEEE' }} after <span *ngIf="!obj.day.omit_the">the </span></span>
-          {{ obj.day.week.name }}
-        </span>
-        <span *ngIf="isSunday">{{ obj.day.week.name }}</span>
-      </h2>
-      <h2 *ngIf="holyDayObserved(obj.day) && holyDayName(obj.day)" class="holydayname">{{ holyDayName(obj.day) }}</h2>
-      <h3 *ngIf="!holyDayObserved(obj.day) && holyDayName(obj.day)" class="blackletter">{{ holyDayName(obj.day) }}</h3>
-    <h4 *ngIf="obj.day.proper">({{ obj.day.proper.label }})</h4>*/}
+      { day.day?.week?.proper && <h4 className='day'>{day.day?.week?.proper?.label}</h4> }
     </React.Fragment>
   )
 }

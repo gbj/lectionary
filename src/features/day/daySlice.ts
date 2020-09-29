@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getDay } from './get-day';
-import { DayState } from '../../app/store';
+import { Day, getDay } from './get-day';
+import { AppState, DayState } from '../../app/store';
 
 export const fetchDay = createAsyncThunk(
   'day/fetchDay',
@@ -35,6 +35,8 @@ export const daySlice = createSlice({
 
 //export const { setDate } = daySlice.actions;
 
-export const selectDate = (state : { date: string; }) => state.date;
+export const selectDate = (state : AppState) => state.date;
+
+export const selectDay : (state: AppState) => Day | undefined = (state : AppState) => state.day.day;
 
 export default daySlice.reducer;
